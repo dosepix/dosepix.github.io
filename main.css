@@ -1,0 +1,34 @@
+.image-container {
+    background-image: url("./assets/IMG_2727.JPG");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;  
+}
+
+.features.title {
+    color: whitesmoke;
+}
+
+.features.subtitle {
+    color:whitesmoke;
+}
+
+.main-text {
+    position: absolute;
+}
+
+.main-container {
+    background-color: #440154;
+}
+
+.section.section-grey {
+    background-color: rgb(245, 245, 245);
+}
+
+.card {
+    background-color: whitesmoke;
+    border: 10px solid rgb(204, 255, 133);
+    border-radius: 20px;
+    margin: 15px;
+    padding: 50px;
+}

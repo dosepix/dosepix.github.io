@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dosepix</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://unpkg.com/css-doodle@0.23.0/css-doodle.min.js"></script>
+</head>
+
+<body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#">
+            <img src="./assets/DPX_logo.svg" alt="DPX" height="128">
+          </a>
+        </div>
+    </nav>
+
+    <section class="hero is-fullheight is-default is-bold">
+        <div class="hero-body main-container">
+            <div class="matrix container">
+                <css-doodle click-to-update>
+                    :doodle { 
+                        @grid: 16 / 100% 70em; 
+                        --s: @r(360); 
+                        --x: @r(.4); 
+                        --y: @r(.4); 
+                        background: #440154;
+                    }
+                    transition: .5s ease-in-out; 
+                    transition-delay: @rand(1500ms);
+                    background: hsl(calc(12 * var(--x) * @x * var(--y) * @y + var(--s)), @rand(50, 100)%, 50%);
+                    opacity: @pick(1, .6, .3, .1);
+                </css-doodle>    
+            </div>
+            <div class="main-text container">
+                <div class="columns is-vcentered">
+                    <div class="column is-6 is-offset-3 landing-caption card">
+                        <!-- h1 class="main title is-bold is-spaced">The Dosepix detector</h1 -->
+                        <figure class="image">
+                            <img src="./assets/DPX_logo.svg">
+                        </figure>
+                        <br>
+                        <h2 class="main subtitle">
+                            A hybrid energy-resolving pixel detector designed for dosimetry and spectroscopy applications. Its sensor is divided in 16 x 16 pixels with a maximum edge length of 220 µm per pixel
+                            
+                            <!-- Effects like charge sharing are relatively low due to the high effective area per pixel. This results in a great energy spectroscopy capabilities without the need for clustering. The Dosepix detector with its integrated energy-binning mode is able to register events without dead-time which makes it the perfect device for monitoring radiation protection measures -->
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>      
+      
+    <section class="hero is-medium image-container">
+        <div class="hero-body">
+          <p class="features title">
+            Features
+          </p>
+          <p class="features subtitle">
+            Medium subtitle
+          </p>
+        </div>
+    </section>      
+
+    <div class="hero-foot mb-20"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <img src="./assets/DPX_logo.svg" alt="DPX" height="128">
+                </div>
+                <div class="column is-offset-1">
+                    <div class="footer-header">
+                        <h3>Contact</h3>
+                    </div>
+                </div>
+                <div class="column is-offset-1">
+                    <div class="footer-header">
+                        <h3>Contact</h3>
+                    </div>
+                </div>
+                <div class="column is-offset-1">
+                    <div class="footer-header">
+                        <h3>Contact</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./scripts/index.js"></script>
+</body>
