@@ -1,5 +1,9 @@
+body {
+    font-family: "Montserrat",sans-serif !important;
+}  
+
 .image-container {
-    background-image: url("./assets/IMG_2727.JPG");
+    background-image: url("./assets/dosepix.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;  
@@ -15,7 +19,6 @@
 
 .main-text {
     position: absolute;
-    position: absolute;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -28,14 +31,90 @@
     background-color: #440154;
 }
 
+.container.features-container {
+    padding: 30px;
+}
+
+.features-card {
+    background-color: #fff;
+    box-shadow: -1px 3px 15px 0 rgb(0 0 0 / 6%);
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    margin: 1rem;
+    padding: 3rem;
+}
+
+h1.heading {
+    width: 70%;
+    margin: .7em auto;
+    overflow: hidden;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.8rem;
+    color: #3b3b3b;
+}
+
+h1.heading:before, h1.heading:after {
+    content: "";
+    display: inline-block;
+    width: 50%;
+    margin: 0 .5em 0 -55%;
+    vertical-align: middle;
+    border-bottom: 1px solid;
+}
+
+h1.heading:after {
+    margin: 0 -55% 0 .5em;
+}
+    
+h2.features {
+    color: #3b3b3b;
+    font-weight: 500;
+    font-size: 1.9rem;
+}
+
+h3.features {
+    color: #3b3b3b;
+    font-weight: 100;
+    font-size: 1.2rem;
+}
+
+img.features {
+    padding: 20px;
+}
+
+p.features {
+    color: gray;
+	text-align: justify;
+}
+
 .section.section-grey {
     background-color: rgb(245, 245, 245);
 }
 
 .card {
-    background-color: whitesmoke;
-    border: 10px solid rgb(204, 255, 133);
+    background-color: rgba(245, 245, 245, 0.822);
+    border: 5px solid #440154;
     border-radius: 20px;
     margin: 15px;
     padding: 50px;
+}
+
+.navbar {
+    background-color: #440154;
+}
+
+.navbar-item {
+    color: whitesmoke;
+}
+
+.divider {
+    height: 2px;
+    border-radius: 50px;
+    background: #43015485;
+    width: 14rem;
+}
+
+.divider.is-centered {
+    margin: 0 auto;
 }

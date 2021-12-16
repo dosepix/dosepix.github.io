@@ -9,11 +9,25 @@
 </head>
 
 <body class="has-navbar-fixed-top">
-    <nav class="navbar is-fixed-top is-info" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="#">
-            <img src="./assets/DPX_logo.svg" alt="DPX" height="128">
+            <img src="./assets/DPX_header_logo.svg" alt="DPX" height="128">
           </a>
+        </div>
+
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="#how">
+                    How does it work?
+                </a>
+                <a class="navbar-item" href="#features">
+                    Features
+                </a>
+                <a class="navbar-item" href="#contact">
+                    Contact
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -50,17 +64,74 @@
             </div>
         </div>
     </section>      
-      
-    <section class="hero is-medium image-container">
-        <div class="hero-body">
-          <p class="features title">
-            Features
-          </p>
-          <p class="features subtitle">
-            Medium subtitle
-          </p>
+
+    <section class="hero" id="how">
+        <div class="hero-body image-container">
+            <p class="features title is-1">
+                How does it work?
+            </p>
+            <p class="features subtitle">
+                The measurement procedure of Dosepix
+            </p>
         </div>
-    </section>      
+    </section>
+
+    <section class="hero">
+        <div class="hero-body has-text-centered">
+            <h1 class="heading">
+                Test
+            </h1>
+            <div class="container">
+            </div>
+        </div>
+    </section>
+
+    <section class="hero" id="features">
+        <div class="hero-body image-container">
+            <p class="features title is-1">
+                Features
+            </p>
+            <p class="features subtitle">
+                What makes Dosepix special?
+            </p>
+        </div>
+    </section>
+
+    <section class="hero" id='measurement-modes'>
+        <div class="hero-body has-text-centered">
+            <h1 class="heading">
+                Measurement modes
+            </h1>
+            <div class="container features-container">
+                <div class="columns">
+                    <div class="column features-card has-text-centered">
+                        <h3 class="features">ToT-mode</h3>
+                        <div class="divider is-centered"></div>
+                        <img class="features" src="./assets/Am_fine.svg" alt="Am_fine">
+                        <p class="features">
+                            The registered deposited energy of an event is returned in units of ToT per pixel per readout. Great for precise measurements as the resolution is best in this mode. However, the number of registered events is limited by the readout speed of the electronics
+                        </p>
+                    </div>
+                    <div class="column features-card has-text-centered">
+                        <h3 class="features">Energy-binning-mode</h3>
+                        <div class="divider is-centered"></div>
+                        <img class="features" src="./assets/Am_rough.svg" alt="Am_rough">
+                        <p class="features">
+                            The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy
+                        </p>
+                    </div>
+                    <div class="column features-card has-text-centered">
+                        <h3 class="features">Integration-mode</h3>
+                        <div class="divider is-centered"></div>
+                        <img class="features" src="./assets/integration.svg" alt="integration">
+                        <p class="features">
+                            Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="hero-foot mb-20"></div>
 
