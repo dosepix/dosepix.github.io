@@ -11,7 +11,7 @@ body {
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
-}  
+}
 
 .codebox {
     font-family: monospace;
@@ -23,7 +23,7 @@ body {
 }
 
 .image-container {
-    background-image: url("./assets/dosepix.jpg");
+    background-image: linear-gradient(rgba(50, 50, 50, 0.7), rgba(50, 50, 50, 0.9)), url("./assets/dosepix_back.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;  
@@ -124,17 +124,17 @@ img.main {
 .features-card {
     background-color: #fff;
     box-shadow: -1px 3px 15px 0 rgb(0 0 0 / 6%);
-    border: 1px solid #e3e3e3;
+    border: 2px solid #e3e3e3;
     border-radius: 5px;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     margin: 1rem;
     flex: 1;
 }
 
 .features-card:hover {
     cursor: pointer;
-    border: 1px solid lightblue;
+    border: 2px solid lightblue;
 }
 
 h2.features {
@@ -213,11 +213,11 @@ img.footer-github {
 img.footer-logo {
     border-radius: 5%;
     max-width: 10rem;
-    padding: 2rem;
+    padding: 1rem;
     background-color: whitesmoke;
 }
 
 .footer-h2 {
-    font-weight: 500;
-    font-size: 1.4rem;
+    font-weight: 400;
+    font-size: 1.5rem;
 }

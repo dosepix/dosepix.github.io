@@ -84,21 +84,23 @@
 
     <section class="hero">
         <div class="hero-body">
-            <div class="what columns">
-                <div class="column is-4 is-centered">
-                    <figure class="image">
-                        <img class="what" src="./assets/dosepix_zoom.jpg">
-                    </figure>
-                </div>
-                <div class="column is-8 is-offset">
-                    <ul class="what">
-                        <li>Dosepix is a hybrid energy-resolving photon-counting pixel detector</li>
-                        <li>It was designed for photon dosimetry and spectroscopy applications (energy range of about 10 to 120 keV)</li>
-                        <li>Its sensor is divided in 16 x 16 pixels with a maximum edge length of 220 µm per pixel</li>
-                        <li>It employs different measurement modes (see <a href="#features">Features</a>-section for more information)</li>
-                        <li>Events are registered without noise due to the hardware design of the detector</li>
-                        <li>The energy-binning-mode allows to register photon events without dead-time</li>
-                    </ul>
+            <div class="container">
+                <div class="what columns">
+                    <div class="column is-4 is-centered" align="center">
+                        <figure class="image">
+                            <img class="what" src="./assets/dosepix_zoom.jpg">
+                        </figure>
+                    </div>
+                    <div class="column is-8 is-offset">
+                        <ul class="what">
+                            <li>Dosepix is a hybrid energy-resolving photon-counting pixel detector</li>
+                            <li>It was designed for photon dosimetry and spectroscopy applications (energy range of about 10 to 120 keV)</li>
+                            <li>Its sensor is divided in 16 x 16 pixels with a maximum edge length of 220 µm per pixel</li>
+                            <li>It employs different measurement modes (see <a href="#features">Features</a>-section for more information)</li>
+                            <li>Events are registered without noise due to the hardware design of the detector</li>
+                            <li>The energy-binning-mode allows to register photon events without dead-time</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,29 +200,32 @@
             <div class="container features-container">
                 <div class="card features-card noselect has-text-centered" id='tot-card'>
                     <div class="card-image">
-                        <img class="features" src="./assets/Am_fine.svg" alt="Am_fine">
+                        <figure is-4>
+                            <img class="features" src="./assets/Am_fine.svg" alt="Am_fine">
+                        </figure>
                     </div>
                     <div class="card-content">
-                        <h3 class="features">ToT-mode</h3>
-                        <div class="divider is-centered"></div>    
+                        <p class="title is-4">ToT-mode</p>
                     </div>
                 </div>
                 <div class="card features-card noselect has-text-centered" id='energy-binning-card'>
                     <div class="card-image">
-                        <img class="features" src="./assets/Am_rough.svg" alt="Am_rough">
+                        <figure is-4>
+                            <img class="features" src="./assets/Am_rough.svg" alt="Am_rough">
+                        </figure>
                     </div>
                     <div class="card-content">
-                        <h3 class="features">Energy-binning-mode</h3>
-                        <div class="divider is-centered"></div>    
+                        <p class="title is-4">Energy-binning-mode</p>
                     </div>
                 </div>
                 <div class="card features-card noselect has-text-centered" id='integration-card'>
                     <div class="card-image">
-                        <img class="features" src="./assets/integration.svg" alt="integration">
+                        <figure is-4>
+                            <img class="features" src="./assets/integration.svg" alt="integration">
+                        </figure>
                     </div>
                     <div class="card-content">
-                        <h3 class="features">Integration-mode</h3>
-                        <div class="divider is-centered"></div>    
+                        <p class="title is-4">Integration-mode</p>
                     </div>
                 </div>
             </div>
@@ -264,7 +269,7 @@
 
     <section class="hero">
         <div class="hero-body">
-            <div class="content">
+            <div class="container">
                 <h1 class="heading">
                     Features
                 </h1>
@@ -283,10 +288,10 @@
                     Download & Install
                 </h1>
                 <div class="columns">
-                    <div class="column is-2">Install via pip:</div>
-                    <div class="column codebox has-text-centered">
+                    <div class="column is-3">Install via pip:</div>
+                    <code class="column has-text-centered">
                         pip install dpx_control
-                    </div>
+                    </code>
                 </div>
                 <div class="container has-text-centered" style="margin: 1rem;">
                     - or -
@@ -302,21 +307,23 @@
 
     <!-- Footer -->
     <footer class="individual footer" id="contact">
-        <div class="tile is-ancestor">
-            <div class="tile is-parent has-text-left">
-                <div class="tile is-child">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
                     <h2 class="footer-h2">Contact:</h2>
-                    <br>
                     <figure>
                         <a href="https://github.com/dosepix" target="_blank" rel="noopener noreferrer">
                             <img class="footer-github" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png">
                         </a>
                     </figure>
+                    <figure>
+                        <a href="mailto:Sebastian.Schmidt@dosimetric-instruments.de?cc=Thilo.Michel@dosimetric-instruments.de, Dennis.Haag@dosimetric-instruments.de" target="_blank" rel="noopener noreferrer">
+                            <img class="footer-github" src="assets/di_logo.png">
+                        </a>
+                    </figure>
                 </div>
-            </div>
 
-            <div class="tile is-parent has-text-right">
-                <div class="tile is-child">
+                <div class="column" align="right">
                     <figure>
                         <img class="footer-logo" src="./assets/DPX_logo.svg" alt="DPX">
                     </figure>
