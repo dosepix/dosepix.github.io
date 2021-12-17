@@ -85,11 +85,14 @@ h1.heading:after {
     left: 0;
     right: 0;
     text-align: center;
-    width: 30rem;
 }
 
 .main-container {
     background-color: #440154;
+}
+
+img.main {
+    padding: 2rem;
 }
 
 /* features */

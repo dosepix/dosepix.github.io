@@ -64,21 +64,11 @@
                 </css-doodle>    
             </div>
             <div class="main-text">
-                <figure class="image">
-                    <img src="./assets/DPX_logo.svg">
-                </figure>
-
-                <!--div class="main-card card">
-                    <figure class="image">
-                        <img src="./assets/DPX_logo.svg">
+                <div class="container has-text-centered">
+                    <figure>
+                        <img class="main" src="./assets/DPX_logo.svg">
                     </figure>
-                    <br>
-                    <h2 class="main subtitle">
-                        A hybrid energy-resolving pixel detector designed for dosimetry and spectroscopy applications. Its sensor is divided in 16 x 16 pixels with a maximum edge length of 220 µm per pixel
-                        
-                        Effects like charge sharing are relatively low due to the high effective area per pixel. This results in a great energy spectroscopy capabilities without the need for clustering. The Dosepix detector with its integrated energy-binning mode is able to register events without dead-time which makes it the perfect device for monitoring radiation protection measures
-                    </h2>
-                </div-->
+                </div>
             </div>
         </div>
     </section>      
@@ -95,7 +85,7 @@
     <section class="hero">
         <div class="hero-body">
             <div class="what columns">
-                <div class="column is-4">
+                <div class="column is-4 is-centered">
                     <figure class="image">
                         <img class="what" src="./assets/dosepix_zoom.jpg">
                     </figure>
@@ -179,7 +169,7 @@
                 <ul class="how">
                     <li>ToT values are related to deposited energy via a fixed relation</li>
                     <li>In an energy calibration, ToT-values are matched with corresponding deposited energy values from measurements</li>
-                    <li><a href='#DPXcontrol'>DPXcontrol</a> includes a fast and flexible method involving a neural network to calibrate a detector with a single measurement of an Am-241 calibration source</li>
+                    <li><a href='#dpx-control'>DPXcontrol</a> includes a fast and flexible method involving a neural network to calibrate a detector with a single measurement of an Am-241 calibration source</li>
                 </ul>
             </div>
         </div>
@@ -240,13 +230,13 @@
             <div class="hero-body">
                 <h2 class="features">Description:</h2>
                 <p class="features" id="tot-text">
-                    The registered deposited energy of an event is returned in units of ToT per pixel per readout. Great for precise measurements as the resolution is best in this mode. However, the number of registered events is limited by the readout speed of the electronics
+                    The registered deposited energy of an event is returned in units of ToT per pixel per readout. The mode is great for precise measurements as the energy resolution is best. However, the number of registered events is limited by the readout speed of the electronics
                 </p>
                 <p class="features" id="energy-binning-text">
-                    The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy
+                    The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy. Digital pile-up may occur where the registers of the hardware overflow during the measurement. However, this case is rare and only takes places for photon fields of very high flux
                 </p>
                 <p class="features" id="integration-text">
-                    Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames 
+                    Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames. This mode is useful for photon fields of very high fluxes where other modes may lead to unsatisfying results
                 </p>
 
                 <br><br>
