@@ -233,24 +233,26 @@
 
         <div class="features collapse hero-body" id='features-collapse'>
             <div class="hero-body">
-                <h2 class="features">Description:</h2>
-                <p class="features" id="tot-text">
-                    The registered deposited energy of an event is returned in units of ToT per pixel per readout. The mode is great for precise measurements as the energy resolution is best. However, the number of registered events is limited by the readout speed of the electronics
-                </p>
-                <p class="features" id="energy-binning-text">
-                    The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy. Digital pile-up may occur where the registers of the hardware overflow during the measurement. However, this case is rare and only takes places for photon fields of very high flux
-                </p>
-                <p class="features" id="integration-text">
-                    Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames. This mode is useful for photon fields of very high fluxes where other modes may lead to unsatisfying results
-                </p>
+                <div class="container">
+                    <h2 class="features">Description:</h2>
+                    <p class="features" id="tot-text">
+                        The registered deposited energy of an event is returned in units of ToT per pixel per readout. The mode is great for precise measurements as the energy resolution is best. However, the number of registered events is limited by the readout speed of the electronics
+                    </p>
+                    <p class="features" id="energy-binning-text">
+                        The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy. Digital pile-up may occur where the registers of the hardware overflow during the measurement. However, this case is rare and only takes places for photon fields of very high flux
+                    </p>
+                    <p class="features" id="integration-text">
+                        Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames. This mode is useful for photon fields of very high fluxes where other modes may lead to unsatisfying results
+                    </p>
 
-                <br><br>
-                <figure class="has-text-centered">
-                    <h4 class="features">
-                        Exemplary measurement of Am-241 + Mo-XRF target
-                    </h4>    
-                    <canvas id="chart"></canvas>
-                </figure>
+                    <br><br>
+                    <figure class="has-text-centered">
+                        <h4 class="features">
+                            Exemplary measurement of Am-241 + Mo-XRF target
+                        </h4>    
+                        <canvas id="chart"></canvas>
+                    </figure>
+                </div>
             </div>
         </div>
     </section>
