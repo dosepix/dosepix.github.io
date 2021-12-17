@@ -1,6 +1,21 @@
 body {
-    font-family: "Montserrat",sans-serif !important;
+    font-family: "Rubik", sans-serif;
+    color: #333333;
 }  
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}  
+
+.section.section-grey {
+    background-color: rgb(245, 245, 245);
+}
 
 .image-container {
     background-image: url("./assets/dosepix.jpg");
@@ -9,41 +24,36 @@ body {
     background-size: cover;  
 }
 
-.features.title {
-    color: whitesmoke;
+/* general */
+.hero {
+    font-size: 1.2rem;
 }
 
-.features.subtitle {
-    color:whitesmoke;
+ul {
+    list-style-type: disc;
+    margin-left: 2rem;    
 }
 
-.main-text {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
-    width: 30rem;
+.card {
+    background-color: rgba(245, 245, 245, 0.822);
+    border: 5px solid #440154;
+    border-radius: 20px;
+    margin: 15px;
+    padding: 50px;
 }
 
-.main-container {
-    background-color: #440154;
+.divider {
+    height: 2px;
+    border-radius: 50px;
+    background: #43015485;
+    width: 14rem;
 }
 
-.container.features-container {
-    padding: 30px;
+.divider.is-centered {
+    margin: 0 auto;
 }
 
-.features-card {
-    background-color: #fff;
-    box-shadow: -1px 3px 15px 0 rgb(0 0 0 / 6%);
-    border: 1px solid #e3e3e3;
-    border-radius: 3px;
-    margin: 1rem;
-    padding: 3rem;
-}
-
+/* lined heading */
 h1.heading {
     width: 70%;
     margin: .7em auto;
@@ -66,17 +76,60 @@ h1.heading:before, h1.heading:after {
 h1.heading:after {
     margin: 0 -55% 0 .5em;
 }
-    
+
+/* main */
+.main-text {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 30rem;
+}
+
+.main-container {
+    background-color: #440154;
+}
+
+/* features */
+.features.title {
+    color: whitesmoke;
+}
+
+.features.subtitle {
+    color:whitesmoke;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.features-card {
+    background-color: #fff;
+    box-shadow: -1px 3px 15px 0 rgb(0 0 0 / 6%);
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    padding: 3rem;
+    margin: 1rem;
+    flex: 1;
+}
+
+.features-card:hover {
+    cursor: pointer;
+    border: 1px solid lightblue;
+}
+
 h2.features {
-    color: #3b3b3b;
     font-weight: 500;
     font-size: 1.9rem;
 }
 
 h3.features {
-    color: #3b3b3b;
     font-weight: 100;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 img.features {
@@ -84,37 +137,68 @@ img.features {
 }
 
 p.features {
-    color: gray;
 	text-align: justify;
 }
 
-.section.section-grey {
-    background-color: rgb(245, 245, 245);
+.collapse.features {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;      
 }
 
-.card {
-    background-color: rgba(245, 245, 245, 0.822);
-    border: 5px solid #440154;
+/* what */
+img.what {
+    border: 2px solid #440154;
     border-radius: 20px;
-    margin: 15px;
-    padding: 50px;
+    max-width: 25rem;
 }
 
+/* how */
+h1.heading.how {
+    font-size: 1.3rem;
+}
+
+img.how {
+    width: 20rem;
+}
+
+/* navbar */
 .navbar {
     background-color: #440154;
+    border-bottom: 1px solid gray;
 }
 
 .navbar-item {
     color: whitesmoke;
 }
 
-.divider {
-    height: 2px;
-    border-radius: 50px;
-    background: #43015485;
-    width: 14rem;
+.navbar-burger span {
+    color: white;
 }
 
-.divider.is-centered {
-    margin: 0 auto;
+/* footer */
+.individual.footer {
+    color: whitesmoke;
+    background-color: darkslategrey;
+}
+
+img.footer-github {
+    border-radius: 5%;
+    max-width: 10rem;
+    padding: 1rem;
+    background-color: whitesmoke;
+}
+
+img.footer-logo {
+    border-radius: 5%;
+    max-width: 10rem;
+    padding: 2rem;
+    background-color: whitesmoke;
+}
+
+.footer-h2 {
+    font-weight: 500;
+    font-size: 1.4rem;
 }

@@ -4,25 +4,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dosepix</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
     <link rel="stylesheet" href="main.css">
     <script src="https://unpkg.com/css-doodle@0.23.0/css-doodle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="has-navbar-fixed-top">
+    <!-- Navbar -->
     <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="#">
-            <img src="./assets/DPX_header_logo.svg" alt="DPX" height="128">
-          </a>
+            <a class="navbar-item" href="#">
+                <img src="./assets/DPX_header_logo.svg" alt="DPX" height="128">
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
 
-        <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-menu">
             <div class="navbar-end">
+                <a class="navbar-item" href="#what">
+                    What is Dosepix?
+                </a>
                 <a class="navbar-item" href="#how">
                     How does it work?
                 </a>
                 <a class="navbar-item" href="#features">
                     Features
+                </a>
+                <a class="navbar-item" href="#dpx-control">
+                    DPXcontrol
                 </a>
                 <a class="navbar-item" href="#contact">
                     Contact
@@ -31,12 +45,13 @@
         </div>
     </nav>
 
+    <!-- Main -->
     <section class="hero is-fullheight is-default is-bold">
         <div class="hero-body main-container">
             <div class="matrix container">
                 <css-doodle click-to-update>
                     :doodle { 
-                        @grid: 16 / 100% 70em; 
+                        @grid: 16 / 100% 948px; 
                         --s: @r(360); 
                         --x: @r(.4); 
                         --y: @r(.4); 
@@ -49,22 +64,57 @@
                 </css-doodle>    
             </div>
             <div class="main-text">
-                <div class="main-card card">
-                        <!-- h1 class="main title is-bold is-spaced">The Dosepix detector</h1 -->
-                        <figure class="image">
-                            <img src="./assets/DPX_logo.svg">
-                        </figure>
-                        <br>
-                        <h2 class="main subtitle">
-                            A hybrid energy-resolving pixel detector designed for dosimetry and spectroscopy applications. Its sensor is divided in 16 x 16 pixels with a maximum edge length of 220 µm per pixel
-                            
-                            <!-- Effects like charge sharing are relatively low due to the high effective area per pixel. This results in a great energy spectroscopy capabilities without the need for clustering. The Dosepix detector with its integrated energy-binning mode is able to register events without dead-time which makes it the perfect device for monitoring radiation protection measures -->
-                        </h2>
-                </div>
+                <figure class="image">
+                    <img src="./assets/DPX_logo.svg">
+                </figure>
+
+                <!--div class="main-card card">
+                    <figure class="image">
+                        <img src="./assets/DPX_logo.svg">
+                    </figure>
+                    <br>
+                    <h2 class="main subtitle">
+                        A hybrid energy-resolving pixel detector designed for dosimetry and spectroscopy applications. Its sensor is divided in 16 x 16 pixels with a maximum edge length of 220 µm per pixel
+                        
+                        Effects like charge sharing are relatively low due to the high effective area per pixel. This results in a great energy spectroscopy capabilities without the need for clustering. The Dosepix detector with its integrated energy-binning mode is able to register events without dead-time which makes it the perfect device for monitoring radiation protection measures
+                    </h2>
+                </div-->
             </div>
         </div>
     </section>      
 
+    <!-- What is Dosepix? -->
+    <section class="hero" id="what">
+        <div class="hero-body image-container">
+            <p class="features title is-1">
+                What is Dosepix?
+            </p>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="what columns">
+                <div class="column is-4">
+                    <figure class="image">
+                        <img class="what" src="./assets/dosepix_zoom.jpg">
+                    </figure>
+                </div>
+                <div class="column is-8 is-offset">
+                    <ul class="what">
+                        <li>Dosepix is a hybrid energy-resolving photon-counting pixel detector</li>
+                        <li>It was designed for photon dosimetry and spectroscopy applications (energy range of about 10 to 120 keV)</li>
+                        <li>Its sensor is divided in 16 x 16 pixels with a maximum edge length of 220 µm per pixel</li>
+                        <li>It employs different measurement modes (see <a href="#features">Features</a>-section for more information)</li>
+                        <li>Events are registered without noise due to the hardware design of the detector</li>
+                        <li>The energy-binning-mode allows to register photon events without dead-time</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How does it work? -->
     <section class="hero" id="how">
         <div class="hero-body image-container">
             <p class="features title is-1">
@@ -77,15 +127,65 @@
     </section>
 
     <section class="hero">
-        <div class="hero-body has-text-centered">
-            <h1 class="heading">
-                Test
+        <div class="hero-body">
+            <h1 class="how heading">
+                1. Photon interactions
             </h1>
             <div class="container">
+                <figure class="has-text-centered">
+                    <img class="how" src="./assets/interaction.svg" alt="interaction">
+                </figure>
+                <ul class="how">
+                    <li>Photons emitted by a radioactive source interact with the sensor material of Dosepix (usually 300 µm silicon)</li>
+                    <li>The photons deposit their energy via photoelectic effect or Compton scattering, creating electron-hole pairs in the sensor</li>
+                </ul>
+            </div>
+            <h1 class="how heading">
+                2. Charge drift
+            </h1>
+            <div class="container">
+                <figure class="has-text-centered">
+                    <img class="how" src="./assets/drift.svg" alt="drift">
+                </figure>
+                <ul class="how">
+                    <li>A bias voltage is applied to the sensor, resulting in an electric field</li>
+                    <li>The electron-hole pairs drift apart, hindering recombination processes</li>
+                    <li>In case of a silicon sensor, holes drift towards the p-doped region connected to the pixel electronics</li>
+                    <li>A current is induced in the pixel electronics during the drift of the charge carriers</li>
+                </ul>
+            </div>
+            <h1 class="how heading">
+                3. Signal creation
+            </h1>
+            <div class="container">
+                <figure class="has-text-centered">
+                    <img class="how" src="./assets/signal.svg" alt="signal">
+                </figure>
+                <ul class="how">
+                    <li>Each pixel has its own electronics directly attached to the sensor</li>
+                    <li>The induced current is amplified and stretched via a CSA (charge sensitive amplifier), resulting in the signal shown in the image</li>
+                    <li>The signal's amplitude is proportional to the deposited energy of the initial photon</li>
+                    <li>The signal is compared to a threshold (dashed line) to avoid any noise present on the signal's baseline</li>
+                    <li>The duration the signal exceeds the threshold is returned in digital units of ToT</li>
+                </ul>
+            </div>
+            <h1 class="how heading">
+                4. Energy calibration
+            </h1>
+            <div class="container">
+                <figure class="has-text-centered">
+                    <img class="how" src="./assets/calibration.svg" alt="calibration">
+                </figure>
+                <ul class="how">
+                    <li>ToT values are related to deposited energy via a fixed relation</li>
+                    <li>In an energy calibration, ToT-values are matched with corresponding deposited energy values from measurements</li>
+                    <li><a href='#DPXcontrol'>DPXcontrol</a> includes a fast and flexible method involving a neural network to calibrate a detector with a single measurement of an Am-241 calibration source</li>
+                </ul>
             </div>
         </div>
     </section>
 
+    <!-- Features -->
     <section class="hero" id="features">
         <div class="hero-body image-container">
             <p class="features title is-1">
@@ -98,67 +198,130 @@
     </section>
 
     <section class="hero" id='measurement-modes'>
-        <div class="hero-body has-text-centered">
+        <div class="hero-head">
             <h1 class="heading">
                 Measurement modes
             </h1>
+            <div class="has-text-centered">
+                Click the cards for more information
+            </div>
             <div class="container features-container">
-                <div class="columns">
-                    <div class="column features-card has-text-centered">
-                        <h3 class="features">ToT-mode</h3>
-                        <div class="divider is-centered"></div>
+                <div class="card features-card noselect has-text-centered" id='tot-card'>
+                    <div class="card-image">
                         <img class="features" src="./assets/Am_fine.svg" alt="Am_fine">
-                        <p class="features">
-                            The registered deposited energy of an event is returned in units of ToT per pixel per readout. Great for precise measurements as the resolution is best in this mode. However, the number of registered events is limited by the readout speed of the electronics
-                        </p>
                     </div>
-                    <div class="column features-card has-text-centered">
-                        <h3 class="features">Energy-binning-mode</h3>
-                        <div class="divider is-centered"></div>
+                    <div class="card-content">
+                        <h3 class="features">ToT-mode</h3>
+                        <div class="divider is-centered"></div>    
+                    </div>
+                </div>
+                <div class="card features-card noselect has-text-centered" id='energy-binning-card'>
+                    <div class="card-image">
                         <img class="features" src="./assets/Am_rough.svg" alt="Am_rough">
-                        <p class="features">
-                            The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy
-                        </p>
                     </div>
-                    <div class="column features-card has-text-centered">
-                        <h3 class="features">Integration-mode</h3>
-                        <div class="divider is-centered"></div>
+                    <div class="card-content">
+                        <h3 class="features">Energy-binning-mode</h3>
+                        <div class="divider is-centered"></div>    
+                    </div>
+                </div>
+                <div class="card features-card noselect has-text-centered" id='integration-card'>
+                    <div class="card-image">
                         <img class="features" src="./assets/integration.svg" alt="integration">
-                        <p class="features">
-                            Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames 
-                        </p>
                     </div>
+                    <div class="card-content">
+                        <h3 class="features">Integration-mode</h3>
+                        <div class="divider is-centered"></div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features collapse hero-body" id='features-collapse'>
+            <div class="hero-body">
+                <h2 class="features">Description:</h2>
+                <p class="features" id="tot-text">
+                    The registered deposited energy of an event is returned in units of ToT per pixel per readout. Great for precise measurements as the resolution is best in this mode. However, the number of registered events is limited by the readout speed of the electronics
+                </p>
+                <p class="features" id="energy-binning-text">
+                    The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy
+                </p>
+                <p class="features" id="integration-text">
+                    Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames 
+                </p>
+
+                <br><br>
+                <figure class="has-text-centered">
+                    <h4 class="features">
+                        Exemplary measurement of Am-241 + Mo-XRF target
+                    </h4>    
+                    <canvas id="chart"></canvas>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- DPXcontrol -->
+    <section class="hero" id="dpx-control">
+        <div class="hero-body image-container">
+            <p class="features title is-1">
+                DPXcontrol
+            </p>
+            <p class="features subtitle">
+                Software for detector readout
+            </p>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="content">
+                <div class="has-text-centered">
+                    <a href="https://github.com/dosepix/dpx_control">
+                        <button class="button is-large is-link is-outlined is-fullwidth">Get it on github</button>
+                    </a>
+                </div>
+
+                <h1 class="heading">
+                    Features
+                </h1>
+                <div>
+                    <ul>
+                        <li>Open-source Python-software for the readout of the Dosepix detector</li>
+                        <li>Settings of the detector are changed in a specified configuration file</li>
+                        <li>Equalization of the detector to ensure measurements are independent from noise</li>
+                        <li>Perform measurements in different modes</li>
+                        <li>Data is stored in json-files and easily evaluatable with prefered software</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="hero-foot mb-20"></div>
+    <!-- Footer -->
+    <footer class="individual footer" id="contact">
+        <div class="tile is-ancestor">
+            <div class="tile is-parent has-text-left">
+                <div class="tile is-child">
+                    <h2 class="footer-h2">Contact:</h2>
+                    <br>
+                    <figure>
+                        <a href="https://github.com/dosepix" target="_blank" rel="noopener noreferrer">
+                            <img class="footer-github" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png">
+                        </a>
+                    </figure>
+                </div>
+            </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="columns">
-                <div class="column">
-                    <img src="./assets/DPX_logo.svg" alt="DPX" height="128">
-                </div>
-                <div class="column is-offset-1">
-                    <div class="footer-header">
-                        <h3>Contact</h3>
-                    </div>
-                </div>
-                <div class="column is-offset-1">
-                    <div class="footer-header">
-                        <h3>Contact</h3>
-                    </div>
-                </div>
-                <div class="column is-offset-1">
-                    <div class="footer-header">
-                        <h3>Contact</h3>
-                    </div>
+            <div class="tile is-parent has-text-right">
+                <div class="tile is-child">
+                    <figure>
+                        <img class="footer-logo" src="./assets/DPX_logo.svg" alt="DPX">
+                    </figure>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="./scripts/index.js"></script>
 </body>
