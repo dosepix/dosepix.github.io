@@ -17,14 +17,14 @@
             <a class="navbar-item" href="#">
                 <img src="./assets/DPX_header_logo.svg" alt="DPX" height="128">
             </a>
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <a role="button" class="navbar-burger burger" id="burger" onclick="toggleBurger()" aria-label="menu" aria-expanded="false" data-target="contents">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
 
-        <div class="navbar-menu">
+        <div class="navbar-menu" id="contents">
             <div class="navbar-end">
                 <a class="navbar-item" href="#what">
                     What is Dosepix?
@@ -51,7 +51,7 @@
             <div class="matrix container">
                 <css-doodle click-to-update>
                     :doodle { 
-                        @grid: 16 / 100% 948px; 
+                        @grid: 16 / 100% 100vh; 
                         --s: @r(360); 
                         --x: @r(.4); 
                         --y: @r(.4); 
@@ -59,8 +59,8 @@
                     }
                     transition: .5s ease-in-out; 
                     transition-delay: @rand(1500ms);
-                    background: hsl(calc(12 * var(--x) * @x * var(--y) * @y + var(--s)), @rand(50, 100)%, 50%);
-                    opacity: @pick(1, .6, .3, .1);
+                    background: hsl(calc(12 * var(--x) * @x * var(--y) * @y + var(--s)), @rand(20, 100)%, 50%);
+                    opacity: @rand(0, 1);
                 </css-doodle>    
             </div>
             <div class="main-text">
@@ -265,12 +265,6 @@
     <section class="hero">
         <div class="hero-body">
             <div class="content">
-                <div class="has-text-centered">
-                    <a href="https://github.com/dosepix/dpx_control">
-                        <button class="button is-large is-link is-outlined is-fullwidth">Get it on github</button>
-                    </a>
-                </div>
-
                 <h1 class="heading">
                     Features
                 </h1>
@@ -282,6 +276,25 @@
                         <li>Perform measurements in different modes</li>
                         <li>Data is stored in json-files and easily evaluatable with prefered software</li>
                     </ul>
+                </div>
+                </br>
+
+                <h1 class="heading">
+                    Download & Install
+                </h1>
+                <div class="columns">
+                    <div class="column is-2">Install via pip:</div>
+                    <div class="column codebox has-text-centered">
+                        pip install dpx_control
+                    </div>
+                </div>
+                <div class="container has-text-centered" style="margin: 1rem;">
+                    - or -
+                </div>
+                <div class="container has-text-centered">
+                    <a href="https://github.com/dosepix/dpx_control">
+                        <button class="button is-large is-link is-outlined is-fullwidth">Get it on GitHub</button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -231,3 +231,11 @@ function plot_integral() {
     chart.data = data;
     chart.update();
 }
+
+/* === BURGER === */
+const toggleBurger = () => {
+    let burgerIcon = document.getElementById('burger');
+    let dropMenu = document.getElementById('contents');
+    burgerIcon.classList.toggle('is-active');
+    dropMenu.classList.toggle('is-active');
+};
