@@ -26,21 +26,12 @@
 
         <div class="navbar-menu" id="contents">
             <div class="navbar-end">
-                <a class="navbar-item" href="#what">
-                    What is Dosepix?
-                </a>
-                <a class="navbar-item" href="#how">
-                    How does it work?
-                </a>
-                <a class="navbar-item" href="#features">
-                    Features
-                </a>
-                <a class="navbar-item" href="#dpx-control">
-                    DPXcontrol
-                </a>
-                <a class="navbar-item" href="#contact">
-                    Contact
-                </a>
+                <a class="navbar-item" href="#what">What is Dosepix?</a>
+                <a class="navbar-item" href="#how">How does it work?</a>
+                <a class="navbar-item" href="#features">Features</a>
+                <a class="navbar-item" href="#dpx-control">DPXcontrol</a>
+                <a class="navbar-item" href="#publications">Publications</a>
+                <a class="navbar-item" href="#contact">Contact</a>
             </div>
         </div>
     </nav>
@@ -76,7 +67,7 @@
     <!-- What is Dosepix? -->
     <section class="hero" id="what">
         <div class="hero-body image-container">
-            <p class="features title is-1">
+            <p class="features title">
                 What is Dosepix?
             </p>
         </div>
@@ -109,7 +100,7 @@
     <!-- How does it work? -->
     <section class="hero" id="how">
         <div class="hero-body image-container">
-            <p class="features title is-1">
+            <p class="features title">
                 How does it work?
             </p>
             <p class="features subtitle">
@@ -180,7 +171,7 @@
     <!-- Features -->
     <section class="hero" id="features">
         <div class="hero-body image-container">
-            <p class="features title is-1">
+            <p class="features title">
                 Features
             </p>
             <p class="features subtitle">
@@ -231,15 +222,15 @@
             </div>
         </div>
 
-        <div class="features collapse hero-body" id='features-collapse'>
+        <div class="features collapse hero" id='features-collapse'>
             <div class="hero-body">
                 <div class="container">
-                    <h2 class="features">Description:</h2>
+                    <h2 class="title">Description:</h2>
                     <p class="features" id="tot-text">
                         The registered deposited energy of an event is returned in units of ToT per pixel per readout. The mode is great for precise measurements as the energy resolution is best. However, the number of registered events is limited by the readout speed of the electronics
                     </p>
                     <p class="features" id="energy-binning-text">
-                        The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for the complete pixel-matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy. Digital pile-up may occur where the registers of the hardware overflow during the measurement. However, this case is rare and only takes places for photon fields of very high flux
+                        The registered ToT-values of events are directly sorted in a freely definable histogram of 16 bins per pixel. A readout returns these histograms for every pixel of the matrix. There is no dead-time in this mode which makes it especially applicable for dosimetry applications but also for spectroscopy
                     </p>
                     <p class="features" id="integration-text">
                         Registered ToT-values are summed per pixel until a readout is performed. This allows to measure large quantities of events within very short time-frames. This mode is useful for photon fields of very high fluxes where other modes may lead to unsatisfying results
@@ -249,7 +240,7 @@
                     <figure class="has-text-centered">
                         <h4 class="features">
                             Exemplary measurement of Am-241 + Mo-XRF target
-                        </h4>    
+                        </h4>
                         <canvas id="chart"></canvas>
                     </figure>
                 </div>
@@ -260,7 +251,7 @@
     <!-- DPXcontrol -->
     <section class="hero" id="dpx-control">
         <div class="hero-body image-container">
-            <p class="features title is-1">
+            <p class="features title">
                 DPXcontrol
             </p>
             <p class="features subtitle">
@@ -302,6 +293,62 @@
                     <a href="https://github.com/dosepix/dpx_control">
                         <button class="button is-large is-link is-outlined is-fullwidth">Get it on GitHub</button>
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DPXcontrol -->
+    <section class="hero" id="publications">
+        <div class="hero-body image-container">
+            <p class="features title">
+                Publications and further information
+            </p>
+            <p class="features subtitle">
+                Do you want to know more about Dosepix?
+            </p>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <p class="subtitle">The following list contains a selection of publications which helps to better understand the Dosepix detector and gives examples of possible applications:</p>
+                <div>
+                    <ul>
+                        <li>Dennis Haag et al. (2021), 
+                            <cite><a href="https://arxiv.org/abs/2106.06714" target="_blank" rel="noopener noreferrer">
+                            Personal Dosimetry in Pulsed Photon Fields with the Dosepix Detector</a></cite>
+                        </li>
+                        <li>Sebastian Schmidt (2021), 
+                            <cite><a href="https://nbn-resolving.org/urn:nbn:de:bvb:29-opus4-174579" target="_blank" rel="noopener noreferrer">
+                                Dosimetry and X-ray spectroscopy with the photon counting pixel detector Dosepix</a></cite>
+                        </li>
+                        <li>Dennis Haag et al. (2020), 
+                            <cite><a href="https://ieeexplore.ieee.org/abstract/document/9386123" target="_blank" rel="noopener noreferrer">
+                                Personal Dosimetry in Continuous Photon Radiation Fields With the Dosepix Detector</a></cite>
+                        </li>
+                        <li>Erik Fröjdh et al. (2015), 
+                            <cite><a href="https://www.sciencedirect.com/science/article/pii/S0168900215010700" target="_blank" rel="noopener noreferrer">
+                                Spectral response of the energy-binning Dosepix ASIC coupled to a 300 μm silicon sensor under high fluxes of synchrotron radiation</a></cite>
+                        </li>
+                        <li>Andrea Zang et al. (2015), 
+                            <cite><a href="https://iopscience.iop.org/article/10.1088/1748-0221/10/04/C04015" target="_blank" rel="noopener noreferrer">
+                                The Dosepix detector — an energy-resolving photon-counting pixel detector for spectrometric measurements</a></cite>
+                        </li>
+                        <li>Ina Ritter et al. (2014), 
+                            <cite><a href="https://iopscience.iop.org/article/10.1088/1748-0221/9/05/C05069" target="_blank" rel="noopener noreferrer">
+                                Characterization of the Dosepix detector with XRF and analog testpulses</a></cite>
+                        </li>
+                        <li>Winnie Wong (2012), 
+                            <cite><a href="http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A524757&dswid=1822" target="_blank" rel="noopener noreferrer">
+                                A Hybrid Pixel Detector ASIC with Energy Binning for Real-Time, Spectroscopic Dose Measurements</a></cite>
+                        </li>
+                        <li>Michael Böhnel (2012), 
+                            <cite><a href="https://nbn-resolving.org/urn:nbn:de:bvb:29-opus-32354" target="_blank" rel="noopener noreferrer">
+                                Evaluierung und Entwicklung von Röntgendetektoren für die Dosimetrie</a></cite>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

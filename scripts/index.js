@@ -10,6 +10,10 @@ var integration_text = document.getElementById('integration-text');
 var features_collapse = document.getElementById('features-collapse');
 var selected_feature = undefined;
 
+/* burger */
+var burgerIcon = document.getElementById('burger');
+var dropMenu = document.getElementById('contents');
+
 function collapse_and_extend() {
     // Collapse
     /*
@@ -49,6 +53,10 @@ tot_card.addEventListener('click', () => {
     energy_binning_text.style.display = 'none';
     integration_text.style.display = 'none';
 
+    tot_card.classList.add('is-selected');
+    energy_binning_card.classList.remove('is-selected');
+    integration_card.classList.remove('is-selected');
+
     disable_plot(plot_interval_binning);
     disable_plot(plot_interval_integration);
     plot_interval_tot = setInterval(plot_tot, 100);
@@ -65,6 +73,10 @@ energy_binning_card.addEventListener('click', () => {
     energy_binning_text.style.display = 'inline';
     integration_text.style.display = 'none';
 
+    tot_card.classList.remove('is-selected');
+    energy_binning_card.classList.add('is-selected');
+    integration_card.classList.remove('is-selected');
+
     disable_plot(plot_interval_tot);
     disable_plot(plot_interval_integration);
     plot_interval_binning = setInterval(plot_binning, 100);
@@ -80,6 +92,10 @@ integration_card.addEventListener('click', () => {
     tot_text.style.display = 'none';
     energy_binning_text.style.display = 'none';
     integration_text.style.display = 'inline';
+
+    tot_card.classList.remove('is-selected');
+    energy_binning_card.classList.remove('is-selected');
+    integration_card.classList.add('is-selected');
 
     disable_plot(plot_interval_tot);
     disable_plot(plot_interval_binning);
@@ -107,7 +123,7 @@ var config = {
                     display: true,
                     text: "Registered events",
                     font: {
-                        size: 20,
+                        size: 16,
                     },    
                 },
             },
@@ -116,13 +132,15 @@ var config = {
                     display: true,
                     text: "Deposited energy (keV)",
                     font: {
-                        size: 20,
+                        size: 16,
                     },    
                 },
+                barPercentage : 1,
+                categoryPercentage : 1,
             },
         },
         layout: {
-            padding: 30,
+            padding: 0,
         },
         plugins: {
             legend: {
@@ -234,8 +252,12 @@ function plot_integral() {
 
 /* === BURGER === */
 const toggleBurger = () => {
-    let burgerIcon = document.getElementById('burger');
-    let dropMenu = document.getElementById('contents');
     burgerIcon.classList.toggle('is-active');
     dropMenu.classList.toggle('is-active');
 };
+
+// Close dropmenu after selecting option
+dropMenu.onclick = function() {
+    burgerIcon.classList.remove('is-active');
+    dropMenu.classList.remove('is-active');
+}

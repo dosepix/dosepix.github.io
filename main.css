@@ -1,7 +1,7 @@
 body {
     font-family: "Rubik", sans-serif;
     color: #333333;
-}  
+}
 
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
@@ -70,13 +70,15 @@ h1.heading {
     color: #3b3b3b;
 }
 
-h1.heading:before, h1.heading:after {
-    content: "";
-    display: inline-block;
-    width: 50%;
-    margin: 0 .5em 0 -55%;
-    vertical-align: middle;
-    border-bottom: 1px solid;
+@media only screen and (min-width: 600px) {
+    h1.heading:before, h1.heading:after {
+        content: "";
+        display: inline-block;
+        width: 50%;
+        margin: 0 .5em 0 -55%;
+        vertical-align: middle;
+        border-bottom: 1px solid;
+    }
 }
 
 h1.heading:after {
@@ -130,11 +132,16 @@ img.main {
     padding-bottom: 2rem;
     margin: 1rem;
     flex: 1;
+    min-width: 20rem;
 }
 
 .features-card:hover {
     cursor: pointer;
     border: 2px solid lightblue;
+}
+
+.features-card.is-selected {
+    border: 2px solid lightcoral;
 }
 
 h2.features {
@@ -156,7 +163,7 @@ p.features {
 }
 
 .collapse.features {
-    padding: 0 18px;
+    padding: 0 1rem;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
