@@ -119,6 +119,7 @@ var config = {
         animation : false,
         scales: {
             y: {
+                type: 'linear',
                 title: {
                     display: true,
                     text: "Registered events",
@@ -128,6 +129,7 @@ var config = {
                 },
             },
             x: {
+                type: 'linear',
                 title: {
                     display: true,
                     text: "Deposited energy (keV)",
@@ -135,8 +137,6 @@ var config = {
                         size: 16,
                     },    
                 },
-                barPercentage : 1,
-                categoryPercentage : 1,
             },
         },
         layout: {
@@ -184,6 +184,8 @@ function plot_tot() {
     let data = {
         labels: bins,
         datasets: [{
+            barPercentage : 1,
+            categoryPercentage : 1,
             data: hist_rand,
         }]
     }    
@@ -208,6 +210,8 @@ function plot_binning() {
     let data = {
         labels: bins_binning,
         datasets: [{
+            barPercentage : 1,
+            categoryPercentage : 1,
             data: hist_binning,
         }]
     }    
@@ -243,6 +247,8 @@ function plot_integral() {
     let data = {
         labels: bins_int,
         datasets: [{
+            barPercentage : 1,
+            categoryPercentage : 1,
             data: hist_int,
         }]
     }    
