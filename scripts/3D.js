@@ -65,6 +65,7 @@ function init() {
 
     // RENDERER
     renderer = new THREE.WebGLRenderer( {canvas} );
+    renderer.setSize(what_text.clientWidth, what_text.clientHeight, false);
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.shadowMap.enabled = true;
 }
