@@ -2,7 +2,8 @@ import * as THREE from 'https://cdn.skypack.dev/three';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/OrbitControls';
 
-var canvas = document.getElementById('3D-canvas');
+var what_text = document.getElementById('what-text');
+const canvas = document.getElementById('3D-canvas');
 var camera, controls, scene, renderer;
 
 function init() {
@@ -21,6 +22,7 @@ function init() {
     controls.enablePan = false;
     controls.minDistance = 1.5;
     controls.maxDistance = 6;
+    controls.update();
 
     // LIGHTS
     const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
@@ -62,15 +64,46 @@ function init() {
     });  
 
     // RENDERER
-    renderer = new THREE.WebGLRenderer( );
-    // renderer.setPixelRation( window.devicePixelRatio );
-    renderer.setSize( canvas.getBoundingClientRect().width, canvas.getBoundingClientRect().width );
-    canvas.appendChild( renderer.domElement );
+    renderer = new THREE.WebGLRenderer( {canvas} );
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.shadowMap.enabled = true;
 }
 
+// Change view when display size changes
+function resizeRendererToDisplaySize(renderer) {
+    const canv = renderer.domElement;
+    const width = what_text.clientWidth;
+    const height = what_text.clientHeight;
+    const needResize = canv.width !== width || canv.height !== height;
+    if (needResize) {
+        renderer.setSize(width, height, false);
+    }
+    return needResize;
+}
+
+// Call init before changing stuff
+init();
+
+// Request to render if controls changed
+var renderRequested = false;
+function requestRenderIfNotRequested() {
+    if (!renderRequested) {
+        renderRequested = true;
+        requestAnimationFrame(render);
+    }
+}  
+controls.addEventListener('change', requestRenderIfNotRequested);
+
+// === RENDER ===
 function render() {
+    renderRequested = false;
+
+    if (resizeRendererToDisplaySize(renderer)) {
+        const canv = renderer.domElement;
+        camera.aspect = canv.clientWidth / canv.clientHeight;
+        camera.updateProjectionMatrix();
+    }
+
     // const delta = clock.getDelta();
     renderer.render(scene, camera);
 }
@@ -80,5 +113,4 @@ function animate() {
     render();
 }
 
-init();
 animate();

@@ -5,6 +5,7 @@
     <title>Dosepix</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="main.css">
     <script src="https://unpkg.com/css-doodle@0.23.0/css-doodle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -28,10 +29,10 @@
             <div class="navbar-end">
                 <a class="navbar-item" href="#what">What is Dosepix?</a>
                 <a class="navbar-item" href="#how">How does it work?</a>
-                <a class="navbar-item" href="#features">Features</a>
-                <a class="navbar-item" href="#dpx-control">DPXcontrol</a>
-                <a class="navbar-item" href="#publications">Publications</a>
-                <a class="navbar-item" href="#contact">Contact</a>
+                <a class="navbar-item" href="#features"><p><i class="bi-list-ul"></i>  Features</p></a>
+                <a class="navbar-item" href="#dpx-control"><p><i class="bi-gear"></i> DPXcontrol</p></a>
+                <a class="navbar-item" href="#publications"><p><i class="bi-file-pdf"></i> Publications</p></a>
+                <a class="navbar-item" href="#contact"><p><i class="bi-person-lines-fill"></i>  Contact</p></a>
             </div>
         </div>
     </nav>
@@ -74,16 +75,26 @@
     </section>
 
     <section class="hero">
+        <div class="hero-body" style="padding-bottom: 0rem;">
+            <div class="container" style="text-align: justify;">
+                <p>
+                    The 3D-model on the left shows the Dosepix detector. The device itself has a size of about 3.5 mm to 3.5 mm and is attached to a small PCB that is connected to the readout electronics via a connector. A plastic cap is put on top to protect the detector from physical damage. 
+                </p>
+                <p>
+                    <i class="bi-arrow-clockwise"></i> Rotate and <i class="bi-zoom-in"></i> zoom the model to get a detailed view of the detector's silicon-sensor. The following list gives a brief description about the main features of Dosepix
+                </p>
+            </div>
+        </div>
         <div class="hero-body">
             <div class="container">
                 <div class="what columns">
-                    <div class="column is-4 is-centered" align="center">
-                        <div id="3D-canvas"></div>
+                    <div class="column is-6 is-centered" align="center">
+                        <canvas id="3D-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
                         <!--figure class="image">
                             <img class="what" src="./assets/dosepix_zoom.jpg">
                         </figure-->
                     </div>
-                    <div class="column is-8 is-offset">
+                    <div class="column is-6 is-offset" id="what-text">
                         <ul class="what">
                             <li>Dosepix is a hybrid energy-resolving photon-counting pixel detector</li>
                             <li>It was designed for photon dosimetry and spectroscopy applications (energy range of about 10 to 120 keV)</li>
@@ -182,7 +193,7 @@
     </section>
 
     <section class="hero" id='measurement-modes'>
-        <div class="hero-head">
+        <div class="hero-body">
             <h1 class="heading">
                 Measurement modes
             </h1>
@@ -263,38 +274,34 @@
 
     <section class="hero">
         <div class="hero-body">
+            <h1 class="heading">Features</h1>
             <div class="container">
-                <h1 class="heading">
-                    Features
-                </h1>
-                <div>
-                    <ul>
-                        <li>Open-source Python-software for the readout of the Dosepix detector</li>
-                        <li>Settings of the detector are changed in a specified configuration file</li>
-                        <li>Equalization of the detector to ensure measurements are independent from noise</li>
-                        <li>Perform measurements in different modes</li>
-                        <li>Data is stored in json-files and easily evaluatable with prefered software</li>
-                    </ul>
-                </div>
-                </br>
+                <ul>
+                    <li>Open-source Python-software for the readout of the Dosepix detector</li>
+                    <li>Settings of the detector are changed in a specified configuration file</li>
+                    <li>Equalization of the detector to ensure measurements are independent from noise</li>
+                    <li>Perform measurements in different modes</li>
+                    <li>Data is stored in json-files and easily evaluatable with prefered software</li>
+                </ul>
+            </div>
+            </br>
 
-                <h1 class="heading">
-                    Download & Install
-                </h1>
-                <div class="columns">
-                    <div class="column is-3">Install via pip:</div>
-                    <code class="column has-text-centered">
-                        pip install dpx_control
-                    </code>
-                </div>
-                <div class="container has-text-centered" style="margin: 1rem;">
-                    - or -
-                </div>
-                <div class="container has-text-centered">
-                    <a href="https://github.com/dosepix/dpx_control">
-                        <button class="button is-large is-link is-outlined is-fullwidth">Get it on GitHub</button>
-                    </a>
-                </div>
+            <h1 class="heading">
+                Download & Install
+            </h1>
+            <div class="columns">
+                <div class="column is-3">Install via pip:</div>
+                <code class="column has-text-centered">
+                    pip install dpx_control
+                </code>
+            </div>
+            <div class="container has-text-centered" style="margin: 1rem;">
+                - or -
+            </div>
+            <div class="container has-text-centered">
+                <a href="https://github.com/dosepix/dpx_control">
+                    <button class="button is-large is-link is-outlined is-fullwidth">Get it on GitHub</button>
+                </a>
             </div>
         </div>
     </section>
