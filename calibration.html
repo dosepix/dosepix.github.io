@@ -52,13 +52,13 @@
                             <li>An exact arrangement of the source, the Mo filter, and the detector is not important. Just ensure that the number of registered events by the detector is high, i.e. place the source as close as possible to it</li>
                         </ul>
                     </p>
-                </div>
-                <br>
-                <div class='flex-container'>
-                    <label for="upload-measurement" class="button is-large is-link is-outlined is-fullwidth" id="upload-measurement-button">
-                        Select file to start
-                    </label>
-                    <input type='file' id="upload-measurement" style="visibility: hidden;"></input>
+                    <br>
+                    <div class='flex-container'>
+                        <label for="upload-measurement" class="button is-large is-link is-outlined is-fullwidth" id="upload-measurement-button">
+                            Select file to start
+                        </label>
+                        <input type='file' id="upload-measurement" style="visibility: hidden;"></input>
+                    </div>
                 </div>
             </div>
         </section>
@@ -79,7 +79,19 @@
                 <figure class="has-text-centered">
                     <div id="chart-energy"></div>
                 </figure>
+
+                <h1 class="how heading">
+                    Sum spectrum
+                </h1>    
+                <figure class="has-text-centered">
+                    <div id="chart-sum"></div>
+                </figure>
             </div>
+
+            <div class="container">
+                <button class="button is-large is-link is-outlined is-fullwidth" id="calib-download-button">Download calibration parameters</button>
+            </div>
+            <br>
         </section>
     </container>
 

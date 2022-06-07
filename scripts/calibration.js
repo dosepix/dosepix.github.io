@@ -1,5 +1,6 @@
 var upload_measurement = document.getElementById('upload-measurement');
 var upload_measurement_button = document.getElementById('upload-measurement-button');
+var calib_download_button = document.getElementById('calib-download-button');
 
 // Calibration neural network model
 var model = undefined;
@@ -128,8 +129,23 @@ async function predict_meas(files) {
 
     // Show results
     update_plot(bins, tot_hists);
+    plot_sum(bins, tot_hists);
     document.getElementById('calib-results').style.visibility = 'visible';
     document.getElementById('calib-results-body').style.visibility = 'visible';
+
+    // Provide download of calib params
+    calib_download_button.addEventListener('click', () => {
+        let json_calib = params_reformat(calib_params);
+        // let data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_calib));
+        let data = new Blob([JSON.stringify(json_calib)], {type: "text/json;charset=utf-8,"});
+
+        console.log(data);
+    
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(data);
+        a.download = "calib_params.json";
+        a.click();
+    });
 
     // Disable button while running
     upload_measurement_button.classList.add('disabled');
@@ -139,18 +155,20 @@ async function predict_meas(files) {
     upload_measurement_button.innerHTML = "Select file to start";
 }
 
-function update_plot(bins_energy, hist_tot) {
-    /*
-    const data_energy = {
-        labels: bins_energy,
-        datasets: [{
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: hist_tot,
-        }]
-    };
-    */
+function params_reformat(calib_params) {
+    let calib_json = {};
+    for (var pixel = 0; pixel < 256; pixel++) {
+        calib_json[String(pixel)] = {
+            'a': calib_params[pixel][0],
+            'b': calib_params[pixel][1],
+            'c': calib_params[pixel][2],
+            't': calib_params[pixel][3],
+        }
+    }
+    return calib_json
+}
 
+function update_plot(bins_energy, hist_tot) {
     var data = [];
     for (var pixel = 2; pixel < 14; pixel++) {
         data.push(
@@ -158,16 +176,61 @@ function update_plot(bins_energy, hist_tot) {
                 x: bins_energy[pixel],
                 y: hist_tot[pixel],
                 type: 'scatter',
+                name: 'pixel ' + String(pixel),
             }
         );
     }
 
-    const chart_energy = Plotly.newPlot(
+    Plotly.newPlot(
         'chart-energy',
-        data
+        data,
     );
-    // chart_energy.data = data_energy;
-    // chart_energy.update();
+}
+
+async function plot_sum(bins_energy, hist_tot) {
+    let hist_data = await get_sum_spectrum(bins_energy, hist_tot);
+    console.log(hist_data);
+    let data = {
+        x: hist_data[0],
+        y: hist_data[1],
+        type: 'scatter',
+    }
+
+    Plotly.newPlot(
+        'chart-sum',
+        [data],
+    );
+}
+
+function get_sum_spectrum(bins_energy, hist_tot) {
+    const start_bin = 5;
+    const end_bin = 70;
+    const num_bins = 400;
+
+    var bins_sum = [];
+    var hist_sum = [];
+    for (var index = 0; index < num_bins; index++) {
+        bins_sum.push( start_bin + index * (end_bin - start_bin) / num_bins );
+        hist_sum.push( 0 );
+    }
+
+    for (var pixel = 0; pixel < 256; pixel++) {
+        if (pixel % 16 in [0, 1, 14, 15]) continue;
+
+        let be = bins_energy[pixel];
+        let ht = hist_tot[pixel];
+
+        for (var entry = 0; entry < 400; entry++) {
+            let idx = Math.floor((be[entry] - start_bin) * num_bins / (end_bin - start_bin));
+
+            if (idx < 0 || isNaN(idx)) continue;
+            if ((ht[idx] < 0) || isNaN(ht[idx])) continue;
+
+            hist_sum[idx] += ht[entry];
+        }
+    }
+
+    return [bins_sum, hist_sum]
 }
 
 // === Execute on page load ===
