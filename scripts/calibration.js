@@ -58,7 +58,6 @@ async function predict_meas(files) {
 
     // Check if file has the correct format
     let meas_file = files[0];
-    console.log(meas_file);
     if (meas_file.type != "application/json") {
         alert("File must be in .json-format!");
         return;
@@ -72,7 +71,6 @@ async function predict_meas(files) {
         alert("Provided file has wrong format!");
         return;
     }
-    console.log( meas );
 
     // Every array of the object has a length of 4096,
     // but only the first 400 entries are required. Also,
@@ -107,8 +105,6 @@ async function predict_meas(files) {
         calib_params.push(pred_splice);
     }
 
-    console.log(calib_params);
-
     // Transform bins to deposited energy
     let bins = [];
     for (let pixel = 0; pixel < 256; pixel++) {
@@ -138,8 +134,6 @@ async function predict_meas(files) {
         let json_calib = params_reformat(calib_params);
         // let data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_calib));
         let data = new Blob([JSON.stringify(json_calib)], {type: "text/json;charset=utf-8,"});
-
-        console.log(data);
     
         var a = document.createElement("a");
         a.href = URL.createObjectURL(data);
@@ -189,7 +183,6 @@ function update_plot(bins_energy, hist_tot) {
 
 async function plot_sum(bins_energy, hist_tot) {
     let hist_data = await get_sum_spectrum(bins_energy, hist_tot);
-    console.log(hist_data);
     let data = {
         x: hist_data[0],
         y: hist_data[1],
