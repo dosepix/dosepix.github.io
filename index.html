@@ -29,10 +29,11 @@
             <div class="navbar-end">
                 <a class="navbar-item" href="#what">What is Dosepix?</a>
                 <a class="navbar-item" href="#how">How does it work?</a>
-                <a class="navbar-item" href="#features"><p><i class="bi-list-ul"></i>  Features</p></a>
+                <a class="navbar-item" href="#features"><p><i class="bi-list-ul"></i> Features</p></a>
                 <a class="navbar-item" href="#dpx-control"><p><i class="bi-gear"></i> DPXcontrol</p></a>
+                <a class="navbar-item" href="#calibration"><p><i class="bi-wrench"></i> Calibration</p></a>
                 <a class="navbar-item" href="#publications"><p><i class="bi-file-pdf"></i> Publications</p></a>
-                <a class="navbar-item" href="#contact"><p><i class="bi-person-lines-fill"></i>  Contact</p></a>
+                <a class="navbar-item" href="#contact"><p><i class="bi-person-lines-fill"></i> Contact</p></a>
             </div>
         </div>
     </nav>
@@ -164,7 +165,7 @@
                     <li>The duration the signal exceeds the threshold is returned in digital units of ToT</li>
                 </ul>
             </div>
-            <h1 class="how heading">
+            <h1 class="how heading" id="how-calibration">
                 4. Energy calibration
             </h1>
             <div class="container">
@@ -306,7 +307,35 @@
         </div>
     </section>
 
-    <!-- DPXcontrol -->
+
+    <!-- Calibration -->
+    <section class="hero" id="calibration">
+        <div class="hero-body image-container">
+            <p class="features title">
+                Energy calibration
+            </p>
+            <p class="features subtitle">
+                of a Dosepix detector
+            </p>
+        </div> 
+    </section>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <p>The Dosepix detector returns the deposited energies of registered events in arbitrary units of ToT. To get a meaningful measure for these energies, a calibration is required. Please see the <a href="#how-calibration">"Energy calibration" paragraph</a> in the <a href="#how">"How does it work?" section</a>.</p>
+                <p>Click the button below to go to the energy calibration page.
+                </p>
+                <div class="has-text-centered" style="margin-top: 1rem;">
+                    <a href="calibration.html">
+                        <button class="button is-large is-link is-outlined is-fullwidth">Energy Calibration</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
     <section class="hero" id="publications">
         <div class="hero-body image-container">
             <p class="features title">
@@ -384,7 +413,7 @@
                     <figure>
                         <img class="footer-logo" src="./assets/DPX_logo.svg" alt="DPX">
                     </figure>
-                    <p>© Sebastian Schmidt, 2021</p>
+                    <p>© Sebastian Schmidt, 2022</p>
                 </div>
             </div>
         </div>

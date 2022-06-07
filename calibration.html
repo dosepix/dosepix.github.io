@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Energy Calibration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://unpkg.com/css-doodle@0.23.0/css-doodle.min.js"></script>
+	<script src='https://cdn.plot.ly/plotly-2.12.1.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+</head>
+
+<body class="has-navbar-fixed-top">
+    <!-- Navbar -->
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="index.html">
+                <img src="./assets/DPX_header_logo.svg" alt="DPX" height="128">
+            </a>
+            <a role="button" class="navbar-burger burger" id="burger" onclick="toggleBurger()" aria-label="menu" aria-expanded="false" data-target="contents">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-end">
+            </div>
+        </div>
+    </nav>
+
+    <container>
+        <section class="hero" id="calib-intro">
+            <div class="hero-body image-container">
+                <p class="features title">
+                    Introduction
+                </p>
+            </div>
+        </section>
+
+        <section class="hero">
+            <div class="hero-body" style="padding-bottom: 0rem;">
+                <div class="container">
+                    <p>Click the button below to perform an energy calibration from a single measurement using a neural network. The measurement has to be taken in a specific way
+                        <ul>
+                            <li>Use an Am-241 calibration source with a molybdenum filter applied in front of it or in front of the detector</li>
+                            <li>The measurement has to be made in ToT-mode</li>
+                            <li>A measurement duration of about 10 minutes is sufficient for the large pixels. Consider a time of about 60 minutes for the small pixels</li>
+                            <li>An exact arrangement of the source, the Mo filter, and the detector is not important. Just ensure that the number of registered events by the detector is high, i.e. place the source as close as possible to it</li>
+                        </ul>
+                    </p>
+                </div>
+                <br>
+                <div class='flex-container'>
+                    <label for="upload-measurement" class="button is-large is-link is-outlined is-fullwidth" id="upload-measurement-button">
+                        Select file to start
+                    </label>
+                    <input type='file' id="upload-measurement" style="visibility: hidden;"></input>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero" id="calib-results">
+            <div class="hero-body image-container">
+                <p class="features title">
+                    Results
+                </p>
+            </div>
+        </section>
+
+        <section class="hero" id="calib-results-body">
+            <div class="hero-body" style="padding-bottom: 0rem;">
+                <h1 class="how heading">
+                    Large pixels of first column
+                </h1>    
+                <figure class="has-text-centered">
+                    <div id="chart-energy"></div>
+                </figure>
+            </div>
+        </section>
+    </container>
+
+    <!-- Scripts -->
+    <script type="module" src="./scripts/calibration.js"></script>
+</body>
