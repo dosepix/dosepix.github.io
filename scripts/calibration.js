@@ -1,6 +1,7 @@
 var upload_measurement = document.getElementById('upload-measurement');
 var upload_measurement_button = document.getElementById('upload-measurement-button');
 var calib_download_button = document.getElementById('calib-download-button');
+var slot_select_modal = document.getElementById('slot-select-modal');
 
 // Calibration neural network model
 var model = undefined;
@@ -40,9 +41,15 @@ function ToT_to_energy(x, a, b, c, t) {
     return 1./(2*a) * ( t*a + x - b + Math.sqrt((b + t*a - x)**2 - 4*a*c) );
 }
 
-upload_measurement.addEventListener('change', () => {
+const meas_upload = () => {
     predict_meas(upload_measurement.files);
-});
+    upload_measurement.value = "";
+}
+
+upload_measurement.addEventListener(
+    'change',
+    meas_upload,
+);
 
 async function predict_meas(files) {
     if (model == undefined) {
@@ -67,15 +74,56 @@ async function predict_meas(files) {
     let meas = await load_meas_file(meas_file);
 
     // Check structure of object
-    if (!meas.hasOwnProperty('frames')) {
+    if (
+        !meas.hasOwnProperty('frames') &&
+        !meas.hasOwnProperty('Slot1') &&
+        !meas.hasOwnProperty('Slot2') &&
+        !meas.hasOwnProperty('Slot3')
+    ) {
         alert("Provided file has wrong format!");
         return;
     }
 
+    if (meas.hasOwnProperty('frames')) {
+        start_calibration(meas, 'frames');
+    } else {
+        slot_select_modal.classList.add('is-active');
+        var properties = [];
+        for (const property in meas) {
+            properties.push( property );
+        }
+
+        if (properties.length == 1) {
+            start_calibration(meas, properties[0]);
+        } else {
+            var select_list = document.createElement("select");
+            select_list.id = "slot-select";
+            document.getElementById('slot-select-modal-body').innerHTML = "";
+            document.getElementById('slot-select-modal-body').appendChild(select_list);
+
+            //Create and append the options
+            for (var idx = 0; idx < properties.length; idx++) {
+                var option = document.createElement("option");
+                option.value = properties[idx];
+                option.text = properties[idx];
+                select_list.appendChild(option);
+            }
+        }
+
+        const slot_select_onclick = () => {
+            slot_select_modal.classList.remove('is-active');
+            start_calibration(meas, select_list.value);
+            document.getElementById('slot-select-button').removeEventListener('click', slot_select_onclick);
+        }
+        document.getElementById('slot-select-button').addEventListener('click', slot_select_onclick);
+    }
+}
+
+function start_calibration(meas, property) {
     // Every array of the object has a length of 4096,
     // but only the first 400 entries are required. Also,
     // each spectrum is normalized to its maximum
-    let frames = meas.frames;
+    let frames = meas[property];
     let tot_hists = [];
     for (let pixel = 0; pixel < 256; pixel++) {
         let temp = [];
@@ -132,7 +180,6 @@ async function predict_meas(files) {
     // Provide download of calib params
     calib_download_button.addEventListener('click', () => {
         let json_calib = params_reformat(calib_params);
-        // let data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_calib));
         let data = new Blob([JSON.stringify(json_calib)], {type: "text/json;charset=utf-8,"});
     
         var a = document.createElement("a");
