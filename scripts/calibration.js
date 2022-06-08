@@ -7,12 +7,22 @@ var slot_select_modal = document.getElementById('slot-select-modal');
 var model = undefined;
 
 function before_print_handler () {
+    /**
+     * Called after page is loaded. Hides results
+     * and loads the model file
+     */
     document.getElementById('calib-results').style.visibility = 'hidden';
     document.getElementById('calib-results-body').style.visibility = 'hidden';
 }
 
+// === Loaders ===
 async function load_model(file) {
-    // Load neural net
+    /**
+     * Loads the neural network model
+     * 
+     * @param {string} file The location of the model.json file
+     * @returns {model}
+     */
     try {
         const model = await tf.loadLayersModel(file);
         return model;
@@ -22,6 +32,12 @@ async function load_model(file) {
 }
 
 async function load_meas_file(file) {
+    /**
+     * Loads measurement from file
+     * 
+     * @param {string} file The .json file containining the calibration measurement
+     * @returns {Promise} The parsed .json file
+     */
     var fr = new FileReader();
 
     return new Promise((resolve, reject) => {
@@ -37,34 +53,40 @@ async function load_meas_file(file) {
     });
 }
 
+// === ToT and Energy math ===
 function ToT_to_energy(x, a, b, c, t) {
+    /**
+     * Converts ToT to energy
+     */
     return 1./(2*a) * ( t*a + x - b + Math.sqrt((b + t*a - x)**2 - 4*a*c) );
 }
 
-const meas_upload = () => {
-    predict_meas(upload_measurement.files);
-    upload_measurement.value = "";
+function get_THL(a, b, c, t) {
+    /**
+     * Get energy threshold from calibration parameters
+     */
+    let sqrt_sum = (b + t*a)*(b + t*a) - 4*a*c;
+    if (sqrt_sum < 0) return 12;
+    return 1. / (2*a) * (t*a - b + Math.sqrt( sqrt_sum ));
 }
 
-upload_measurement.addEventListener(
-    'change',
-    meas_upload,
-);
-
-async function predict_meas(files) {
+// === Prediction / Calibration ===
+async function predict_meas(file) {
+    /**
+     * Predict calibration parameters from measurement file.
+     * Throws alerts if model could not be loaded or file has the wrong format.
+     * If file contains information for more than one slot, a selection model
+     * is shown. If the data is correct, start_calibration() is called
+     * 
+     * @param {string} file The file containing the calibration measurement
+     */
     if (model == undefined) {
         alert("Could not load neural network!");
         return;
     }
 
-    // Check if file was set
-    if (files.length <= 0) {
-        alert("Please provide a measurement file!");
-        return;
-    }
-
     // Check if file has the correct format
-    let meas_file = files[0];
+    let meas_file = file;
     if (meas_file.type != "application/json") {
         alert("File must be in .json-format!");
         return;
@@ -120,9 +142,19 @@ async function predict_meas(files) {
 }
 
 function start_calibration(meas, property) {
-    // Every array of the object has a length of 4096,
-    // but only the first 400 entries are required. Also,
-    // each spectrum is normalized to its maximum
+    /**
+     * Performs the actual prediction of the calibration parameters
+     * via the neural network. 
+     * Every array of the object has a length of 4096,
+     * but only the first 400 entries are required. Also,
+     * each spectrum is normalized to its maximum
+     * 
+     * @param {object} meas Object containing histogrammed number of
+     *     events per pixel
+     * @param {string} property The property to access the measurement
+     *     object. This is either `frames` if a single slot was used, or
+     *     `Slot1-3` for the hardware with multiple slots
+     */
     let frames = meas[property];
     let tot_hists = [];
     for (let pixel = 0; pixel < 256; pixel++) {
@@ -174,6 +206,7 @@ function start_calibration(meas, property) {
     // Show results
     update_plot(bins, tot_hists);
     plot_sum(bins, tot_hists);
+    plot_thl(calib_params);
     document.getElementById('calib-results').style.visibility = 'visible';
     document.getElementById('calib-results-body').style.visibility = 'visible';
 
@@ -197,6 +230,13 @@ function start_calibration(meas, property) {
 }
 
 function params_reformat(calib_params) {
+    /**
+     * Reformats the calibration parameters so the results
+     * are readable with the Dosepix control softwares
+     * 
+     * @param {Array} calib_params Array containing the calibration
+     *    parameters for each pixel
+     */
     let calib_json = {};
     for (var pixel = 0; pixel < 256; pixel++) {
         calib_json[String(pixel)] = {
@@ -209,7 +249,11 @@ function params_reformat(calib_params) {
     return calib_json
 }
 
+// === Plot functions ===
 function update_plot(bins_energy, hist_tot) {
+    /**
+     * Update plot that shows the large pixels of the first column
+     */
     var data = [];
     for (var pixel = 2; pixel < 14; pixel++) {
         data.push(
@@ -222,13 +266,25 @@ function update_plot(bins_energy, hist_tot) {
         );
     }
 
+    let layout = {
+        xaxis: {
+            title: {
+                text: 'Deposited energy (keV)',
+            },
+        },
+    }
+
     Plotly.newPlot(
         'chart-energy',
         data,
+        layout,
     );
 }
 
 async function plot_sum(bins_energy, hist_tot) {
+    /**
+     * Update plot that shows the sum of all large pixels
+     */
     let hist_data = await get_sum_spectrum(bins_energy, hist_tot);
     let data = {
         x: hist_data[0],
@@ -236,13 +292,25 @@ async function plot_sum(bins_energy, hist_tot) {
         type: 'scatter',
     }
 
+    let layout = {
+        xaxis: {
+            title: {
+                text: 'Deposited energy (keV)',
+            },
+        },
+    }
+
     Plotly.newPlot(
         'chart-sum',
         [data],
+        layout,
     );
 }
 
 function get_sum_spectrum(bins_energy, hist_tot) {
+    /**
+     * Calculation of the sum spectrum for the large pixels
+     */
     const start_bin = 5;
     const end_bin = 70;
     const num_bins = 400;
@@ -272,6 +340,104 @@ function get_sum_spectrum(bins_energy, hist_tot) {
 
     return [bins_sum, hist_sum]
 }
+
+function get_thl_distribution(calib_params, num_bins=30) {
+    // Calculate thl for each pixel
+    let thls = [];
+    for (let pixel = 0; pixel < 256; pixel++) {
+        // Skip small pixels
+        if (pixel % 16 in [0, 1, 14, 15]) continue;
+
+        let p = calib_params[pixel];
+        let thl = get_THL(...p);
+        if (isNaN(thl)) continue;
+
+        thls.push( thl );
+    }
+    console.log(thls);
+
+    // Find extreme values
+    let min = Math.min(...thls);
+    let max = Math.max(...thls);
+    console.log(max, min);
+    
+    // Create bins and empty histogram
+    let bins = [];
+    let hist = [];
+    for (let b = 0; b < num_bins; b++) {
+        bins.push(min + b * (max - min) / num_bins);
+        hist.push(0);
+    }
+
+    // Fill histogram
+    for (const thl of thls) {
+        let idx = Math.floor((thl - min) * num_bins / (max - min));
+        if (idx >= num_bins) continue;
+        hist[idx]++;
+    }
+
+    // Get average
+    const sum = thls.reduce((a, b) => a + b, 0);
+    const avg = (sum / thls.length) || 0;
+
+    return [bins, hist, avg];
+}
+
+function plot_thl(calib_params) {
+    let bh = get_thl_distribution(calib_params);
+    console.log(bh);
+    let data = {
+        x: bh[0],
+        y: bh[1],
+        type: 'bar',
+    }
+
+    let layout = {
+        xaxis: {
+            title: {
+                text: 'THL (keV)',
+            },
+        },
+        shapes: [
+            {
+                type: 'line',
+                x0: bh[2],
+                y0: 0,
+                x1: bh[2],
+                y1: 1.1 * Math.max(...bh[1]),
+                line: {
+                    color: 'rgb(0, 0, 0)',
+                    width: 3,
+                    dash: 'dashdot',
+                }
+            }
+        ],
+    }
+
+    Plotly.newPlot(
+        'chart-thl',
+        [data],
+        layout,
+    );
+}
+
+// === Main ===
+// Load measurement on button press
+const meas_upload = () => {
+    // Check if file was set
+    if (upload_measurement.files.length <= 0) {
+        alert("Please provide a measurement file!");
+        return;
+    }
+
+    predict_meas(upload_measurement.files[0]);
+    upload_measurement.value = "";
+}
+
+upload_measurement.addEventListener(
+    'change',
+    meas_upload,
+);
 
 // === Execute on page load ===
 function on_ready(func) {
